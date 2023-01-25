@@ -1,29 +1,17 @@
-const puppeteer = require('puppeteer');
+require('dotenv').config();
+const FB = require('fb');
+
 
 (async () => {
-    const username = 'lucianfialho'
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    console.log("Iniciando bot")
-    // Acesse a página de perfil do Instagram desejada
-    await page.goto(`https://www.instagram.com/${username}`);
+    // FB.setAccessToken(process.env.INSTAGRAM_TOKEN);
+    // FB.api('/17841401640520478/insights?metric=impressions&period=day', function (res) {
+    //     if(!res || res.error) {
+    //      console.log(!res ? 'error occurred' : res.error);
+    //      return;
+    //     }
+    //     console.log(res);
+    // });
 
-    console.log("Aguardando a lista de seguidores seja carregada na página")
-    // Aguarde até que a lista de seguidores seja carregada na página
-    await page.waitForSelector(`[href="/${username}/followers/"]`);
-    await page.click(`[href="/${username}/followers/"]`);
-    
-    console.log("Puxando seguidores")
-    // Aguarde até que a lista de seguidores seja carregada na modal
-    await page.waitForSelector('[role="dialog"] ul li');
-
-    // Extraia a lista de seguidores
-    const followers = await page.evaluate(() => {
-        const elements = Array.from(document.querySelectorAll('[role="dialog"] ul li'));
-        return elements.map((element) => element.innerText);
-    });
-
-    console.log(`Este perfil tem os seguintes seguidores: ${followers.join(', ')}.`);
-
-    await browser.close();
+    const response = await fetch(`https://graph.instagram.com/v15.0/17841401640520478?fields=id,username&access_token=${process.env.INSTAGRAM_TOKEN}`)
+    console.log(await response.json())
 })();
