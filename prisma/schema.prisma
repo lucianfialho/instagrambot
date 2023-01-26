@@ -14,7 +14,7 @@ model User {
   username  String   @db.VarChar(255)
   user_id   String?
   followers Int 
-  
+  user_token String
   
   followsCount FollowsCount[]
   impressions Impressions[]
