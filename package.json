@@ -20,6 +20,7 @@
     "puppeteer": "^19.5.2"
   },
   "dependencies": {
+    "@prisma/client": "^4.9.0",
     "dotenv": "^16.0.3",
     "fb": "^2.0.0",
     "fbgraph": "^1.4.4",
