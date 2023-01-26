@@ -22,8 +22,6 @@
   "dependencies": {
     "@prisma/client": "^4.9.0",
     "dotenv": "^16.0.3",
-    "fb": "^2.0.0",
-    "fbgraph": "^1.4.4",
-    "oauth2": "^0.0.1"
+    "fb": "^2.0.0"
   }
 }
